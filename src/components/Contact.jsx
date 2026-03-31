@@ -11,19 +11,19 @@ const Contact = ({ darkMode }) => {
 
     emailjs.sendForm(
       "service_lki5lig",
-      "template_yc6e3tf",
+      "template_17k90eb",   // ✅ Correct Template ID
       form.current,
-      "TktFhIKkQucFHc-qD"
+      "TktFhIKkQucFHc-qD"   // ✅ Public Key
     )
-    .then(() => {
+    .then((result) => {
+      console.log("SUCCESS!", result.text);
       alert("Message Sent Successfully ✅");
+      e.target.reset();   // reset after success
     })
     .catch((error) => {
-      console.log(error);
+      console.error("FAILED...", error);
       alert("Failed to send message ❌");
     });
-
-    e.target.reset();
   };
 
   return (
@@ -103,7 +103,7 @@ const Contact = ({ darkMode }) => {
 
             <button
               type="submit"
-              className="w-full py-3 text-white bg-orange-500 rounded-lg"
+              className="w-full py-3 text-white bg-orange-500 rounded-lg hover:bg-orange-600 transition"
             >
               Send Message
             </button>
