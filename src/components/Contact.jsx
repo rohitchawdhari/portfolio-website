@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import contactImg from "../assets/contact.png";
 
@@ -6,20 +6,17 @@ const Contact = ({ darkMode }) => {
 
   const form = useRef();
 
+  useEffect(() => {
+    emailjs.init("TktFhIKkQucFHc-qD");
+  }, []);
+
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.send(
+    emailjs.sendForm(
       "service_lki5lig",
       "template_17k90eb",
-      {
-        first_name: form.current.first_name.value,
-        last_name: form.current.last_name.value,
-        email: form.current.email.value,
-        phone: form.current.phone.value,
-        message: form.current.message.value,
-      },
-      "TktFhIKkQucFHc-qD"
+      form.current
     )
     .then(() => {
       alert("Message Sent Successfully ✅");
@@ -108,7 +105,7 @@ const Contact = ({ darkMode }) => {
 
             <button
               type="submit"
-              className="w-full py-3 text-white bg-orange-500 rounded-lg hover:bg-orange-600 transition"
+              className="w-full py-3 text-white bg-orange-500 rounded-lg"
             >
               Send Message
             </button>
