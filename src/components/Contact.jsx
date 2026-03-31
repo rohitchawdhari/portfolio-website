@@ -3,7 +3,6 @@ import emailjs from "@emailjs/browser";
 import contactImg from "../assets/contact.png";
 
 const Contact = ({ darkMode }) => {
-
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -11,17 +10,16 @@ const Contact = ({ darkMode }) => {
 
     emailjs.sendForm(
       "service_lki5lig",
-      "template_17k90eb",
+      "template_j7k90eb",
       form.current,
       "TktFhlKkQucFHc-qD"
     )
-    .then((result) => {
-      console.log("SUCCESS!", result.text);
+    .then(() => {
       alert("Message Sent Successfully ✅");
       form.current.reset();
     })
     .catch((error) => {
-      console.log("FAILED...", error);
+      console.error(error);
       alert("Failed to send message ❌");
     });
   };
@@ -103,7 +101,7 @@ const Contact = ({ darkMode }) => {
 
             <button
               type="submit"
-              className="w-full py-3 text-white bg-orange-500 rounded-lg hover:bg-orange-600 transition"
+              className="w-full py-3 text-white bg-orange-500 rounded-lg"
             >
               Send Message
             </button>
