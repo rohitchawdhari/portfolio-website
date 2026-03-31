@@ -15,14 +15,13 @@ const Contact = ({ darkMode }) => {
       form.current,
       "TktFhIKkQucFHc-qD"
     )
-    .then(
-      () => {
-        alert("Message Sent Successfully ✅");
-      },
-      () => {
-        alert("Failed to send message ❌");
-      }
-    );
+    .then(() => {
+      alert("Message Sent Successfully ✅");
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("Failed to send message ❌");
+    });
 
     e.target.reset();
   };
@@ -37,50 +36,26 @@ const Contact = ({ darkMode }) => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Heading */}
-        <div
-          className="text-center mb-8 sm:mb-10 md:mb-12"
-        >
-          <h2
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3"
-            style={{
-              color: darkMode ? "white" : "#1f2937"
-            }}
-          >
-            Get In{" "}
-            <span
-              style={{
-                background:
-                  "linear-gradient(to right, #f97316, #f59e0b)",
-                WebkitBackgroundClip: "text",
-                color: "transparent"
-              }}
-            >
-              Touch
-            </span>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold">
+            Get In <span className="text-orange-500">Touch</span>
           </h2>
-
-          <p className="text-gray-500">
-            Let's discuss your project
-          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-10 items-center">
 
-          {/* Image */}
           <div className="flex justify-center">
             <img
               src={contactImg}
               alt="Contact"
-              className="w-full max-w-xs sm:max-w-sm lg:max-w-md"
+              className="w-full max-w-md"
             />
           </div>
 
-          {/* Form */}
           <form
             ref={form}
             onSubmit={sendEmail}
-            className="p-5 sm:p-6 rounded-xl border"
+            className="p-6 rounded-xl border"
           >
 
             <div className="grid grid-cols-2 gap-3 mb-3">
