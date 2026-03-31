@@ -1,6 +1,32 @@
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 import contactImg from "../assets/contact.png";
 
 const Contact = ({ darkMode }) => {
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      "service_lki5lig",
+      "template_yc6e3tf",
+      form.current,
+      "TktFhIKkQucFHc-qD"
+    )
+    .then(
+      () => {
+        alert("Message Sent Successfully ✅");
+      },
+      () => {
+        alert("Failed to send message ❌");
+      }
+    );
+
+    e.target.reset();
+  };
+
   return (
     <section
       id="contact"
@@ -14,7 +40,6 @@ const Contact = ({ darkMode }) => {
         {/* Heading */}
         <div
           className="text-center mb-8 sm:mb-10 md:mb-12"
-          data-aos="fade-up"
         >
           <h2
             className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3"
@@ -28,7 +53,6 @@ const Contact = ({ darkMode }) => {
                 background:
                   "linear-gradient(to right, #f97316, #f59e0b)",
                 WebkitBackgroundClip: "text",
-                backgroundClip: "text",
                 color: "transparent"
               }}
             >
@@ -41,110 +65,70 @@ const Contact = ({ darkMode }) => {
           </p>
         </div>
 
-        {/* Grid */}
         <div className="grid lg:grid-cols-2 gap-10 items-center">
 
-          {/* Image Left */}
-          <div
-            className="flex justify-center"
-            data-aos="fade-right"
-          >
+          {/* Image */}
+          <div className="flex justify-center">
             <img
               src={contactImg}
               alt="Contact"
-              className="w-full max-w-xs sm:max-w-sm lg:max-w-md h-auto object-contain"
+              className="w-full max-w-xs sm:max-w-sm lg:max-w-md"
             />
           </div>
 
-          {/* Form Right */}
+          {/* Form */}
           <form
-            style={{
-              background: darkMode
-                ? "linear-gradient(to right,#1f2937,#111827)"
-                : "linear-gradient(to right,#ffffff,#f9fafb)"
-            }}
+            ref={form}
+            onSubmit={sendEmail}
             className="p-5 sm:p-6 rounded-xl border"
-            data-aos="fade-left"
           >
-            
-            {/* First Row */}
+
             <div className="grid grid-cols-2 gap-3 mb-3">
 
               <input
                 type="text"
+                name="first_name"
                 placeholder="First Name"
-                style={{
-                  backgroundColor: darkMode ? "#374151" : "#faede3",
-                  borderColor: darkMode ? "#4b5563" : "#d1d5db",
-                  color: darkMode ? "white" : "#1f2937"
-                }}
-                className="w-full px-3 py-2 rounded-lg text-sm sm:text-base focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all"
+                className="w-full px-3 py-2 rounded-lg"
                 required
               />
 
               <input
                 type="text"
+                name="last_name"
                 placeholder="Last Name"
-                style={{
-                  backgroundColor: darkMode ? "#374151" : "#faede3",
-                  borderColor: darkMode ? "#4b5563" : "#d1d5db",
-                  color: darkMode ? "white" : "#1f2937"
-                }}
-                className="w-full px-3 py-2 rounded-lg text-sm sm:text-base focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all"
+                className="w-full px-3 py-2 rounded-lg"
                 required
               />
 
             </div>
 
-            {/* Email */}
             <input
               type="email"
+              name="email"
               placeholder="Email Address"
-              style={{
-                backgroundColor: darkMode ? "#374151" : "#faede3",
-                borderColor: darkMode ? "#4b5563" : "#d1d5db",
-                color: darkMode ? "white" : "#1f2937"
-              }}
-              className="w-full px-3 py-2 rounded-lg text-sm sm:text-base focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all mb-3"
+              className="w-full px-3 py-2 rounded-lg mb-3"
               required
             />
 
-            {/* Phone */}
             <input
-              type="tel"
+              type="text"
+              name="phone"
               placeholder="Phone Number"
-              style={{
-                backgroundColor: darkMode ? "#374151" : "#faede3",
-                borderColor: darkMode ? "#4b5563" : "#d1d5db",
-                color: darkMode ? "white" : "#1f2937"
-              }}
-              className="w-full px-3 py-2 rounded-lg text-sm sm:text-base focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all mb-3"
-              required
+              className="w-full px-3 py-2 rounded-lg mb-3"
             />
 
-            {/* Message */}
             <textarea
+              name="message"
               rows="4"
               placeholder="Your Message"
-              style={{
-                backgroundColor: darkMode ? "#374151" : "#faede3",
-                borderColor: darkMode ? "#4b5563" : "#d1d5db",
-                color: darkMode ? "white" : "#1f2937"
-              }}
-              className="w-full px-3 py-2 rounded-lg text-sm sm:text-base focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all mb-4 resize-none"
+              className="w-full px-3 py-2 rounded-lg mb-4"
               required
-            ></textarea>
+            />
 
-            {/* Button */}
             <button
               type="submit"
-              style={{
-                background:
-                  "linear-gradient(to right, #f97316, #f59e0b)"
-              }}
-              className="w-full py-2 sm:py-3 text-white font-semibold rounded-lg 
-              hover:shadow-lg hover:shadow-orange-500/25 
-              hover:scale-[1.02] transition-all"
+              className="w-full py-3 text-white bg-orange-500 rounded-lg"
             >
               Send Message
             </button>
