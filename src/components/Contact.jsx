@@ -9,19 +9,24 @@ const Contact = ({ darkMode }) => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm(
+    emailjs.send(
       "service_lki5lig",
-      "template_17k90eb",   // ✅ Correct Template ID
-      form.current,
-      "TktFhIKkQucFHc-qD"   // ✅ Public Key
+      "template_17k90eb",
+      {
+        first_name: form.current.first_name.value,
+        last_name: form.current.last_name.value,
+        email: form.current.email.value,
+        phone: form.current.phone.value,
+        message: form.current.message.value,
+      },
+      "TktFhIKkQucFHc-qD"
     )
-    .then((result) => {
-      console.log("SUCCESS!", result.text);
+    .then(() => {
       alert("Message Sent Successfully ✅");
-      e.target.reset();   // reset after success
+      form.current.reset();
     })
     .catch((error) => {
-      console.error("FAILED...", error);
+      console.log("FAILED...", error);
       alert("Failed to send message ❌");
     });
   };
