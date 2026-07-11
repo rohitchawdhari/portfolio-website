@@ -1,9 +1,5 @@
-import project1 from "../assets/project1.png";
-import project2 from "../assets/project2.png";
-import project3 from "../assets/project3.png";
-import project4 from "../assets/project4.png";
-import project5 from "../assets/project5.png";
-import project6 from "../assets/project6.png";
+import smiledental from "../assets/smiledental.png";
+import aicareer from "../assets/aicareer.png";
 
 import { FaGithub } from "react-icons/fa";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -11,54 +7,24 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 const Projects = ({ darkMode }) => {
 
 const projects = [
-{
-id:1,
-title:"E-Commerce Platform",
-desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-image:project1,
-tags:["React","Node.js","MongoDB"]
-},
-
-{
-id:2,
-title:"Fitness Tracker App",
-desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-image:project2,
-tags:["React Native","Firebase"]
-},
-
-{
-id:3,
-title:"Content Generator",
-desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-image:project3,
-tags:["Python","OpenAI"]
-},
-
-{
-id:4,
-title:"Dashboard",
-desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-image:project4,
-tags:["Vue.js","Chart.js"]
-},
-
-{
-id:5,
-title:"Task Management",
-desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-image:project5,
-tags:["Laravel","Vue.js"]
-},
-
-{
-id:6,
-title:"Analytics App",
-desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-image:project6,
-tags:["Next.js","Three.js"]
-}
-
+  {
+    id: 1,
+    title: "Smile Dental Clinic",
+    desc: "A modern and responsive dental clinic website built with React and Tailwind CSS. The website showcases clinic services, doctors, appointment booking, FAQs, testimonials, contact information, and a premium healthcare user interface.",
+    image: smiledental,
+    tags: ["React", "Vite", "Tailwind CSS", "JavaScript"],
+    demo: "https://smiledentalbyrohit.vercel.app/",
+    github: "https://github.com/rohitchawdhari/dental-clinic-react"
+  },
+  {
+    id: 2,
+    title: "AI Career Assistant",
+    desc: "An AI-powered Career Assistant platform that helps students improve their resumes using ATS analysis, resume parsing, AI-powered career guidance, authentication, resume upload, and an intelligent chatbot. Built with a modern responsive interface and designed to help students prepare for placements.",
+    image: aicareer,
+    tags: ["React", "FastAPI", "Python", "MongoDB", "Tailwind CSS", "Gemini AI"],
+    demo: "https://ai-career-assistant-gray.vercel.app/",
+    github: "https://github.com/rohitchawdhari/AI-Career-Assistant"
+  }
 ]
 
 return (
@@ -101,7 +67,7 @@ A showcase of my recent work
 </div>
 
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto justify-center">
 
 {projects.map((project,index)=>(
 
@@ -110,27 +76,28 @@ key={project.id}
 style={{
 background: darkMode
 ? "linear-gradient(to right,#1f2937,#111827)"
-: "linear-gradient(to right,#ffffff,#f9fafb)"
+: "linear-gradient(to right,#ffffff,#f9fafb)",
+borderColor: darkMode ? "#374151" : "#e5e7eb"
 }}
-className="group rounded-xl border duration-300 hover:border-orange-500/50 transition-all"
+className="group rounded-xl border duration-500 hover:border-orange-500/50 hover:shadow-[0_0_30px_rgba(249,115,22,0.25)] hover:-translate-y-2 transition-all flex flex-col h-full overflow-hidden"
 data-aos="fade-up"
 data-aos-delay={index*100}
 >
 
-<div className="h-36 overflow-hidden rounded-t-xl">
+<div className="w-full aspect-[1024/470] overflow-hidden rounded-t-xl relative">
 
 <img
 src={project.image}
 alt={project.title}
-className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 />
 
 </div>
 
-<div className="p-4">
+<div className="p-5 flex flex-col flex-grow">
 
 <h3
-className="text-lg font-bold mb-2"
+className="text-xl font-bold mb-2 transition-colors duration-300"
 style={{
 color: darkMode ? "white" : "#1f2937"
 }}
@@ -138,17 +105,17 @@ color: darkMode ? "white" : "#1f2937"
 {project.title}
 </h3>
 
-<p className="text-sm text-gray-400 mb-3">
+<p className="text-sm text-gray-500 dark:text-gray-400 mb-4 flex-grow">
 {project.desc}
 </p>
 
-<div className="flex flex-wrap gap-2 mb-4">
+<div className="flex flex-wrap gap-2 mb-5">
 
 {project.tags.map((tag,i)=>(
 
 <span
 key={i}
-className="text-xs px-2 py-1 rounded-full bg-gray-700 text-gray-200"
+className="text-xs px-2.5 py-1 rounded-full bg-gray-700 dark:bg-gray-800 text-gray-200"
 >
 {tag}
 </span>
@@ -158,24 +125,28 @@ className="text-xs px-2 py-1 rounded-full bg-gray-700 text-gray-200"
 </div>
 
 
-<div className="flex gap-3">
+<div className="flex gap-3 mt-auto">
 
 <a
-href="#"
-className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-sm rounded-lg bg-gray-700 text-white hover:opacity-90 transition"
+href={project.github}
+target="_blank"
+rel="noopener noreferrer"
+className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-medium rounded-lg bg-gray-700 text-white hover:bg-gray-600 transition-colors duration-300"
 >
 
-<FaGithub/>
+<FaGithub className="text-base"/>
 Code
 
 </a>
 
 <a
-href="#"
-className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-sm rounded-lg bg-orange-500 text-white hover:shadow-[0_0_20px_rgba(249,115,22,0.7)] transition-all duration-300"
+href={project.demo}
+target="_blank"
+rel="noopener noreferrer"
+className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-medium rounded-lg bg-orange-500 text-white hover:bg-orange-600 hover:shadow-[0_0_20px_rgba(249,115,22,0.6)] transition-all duration-300"
 >
 
-<FaExternalLinkAlt/>
+<FaExternalLinkAlt className="text-sm"/>
 Demo
 
 </a>
